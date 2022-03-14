@@ -8,7 +8,7 @@ public class Aplicacao {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println();
-        System.out.println("Calculo de MMC. Valores negativos serao considerados como positivos (regra MMC). O valor zero não sera considerado.");
+        System.out.println("Calculo de MMC e MDC. Valores negativos serao considerados como positivos (regra MMC e MDC). O valor zero não sera considerado.");
         System.out.println();
         System.out.print("Quantos numeros para calcular o MMC e MDC? ");
         int qtdNumeros = scanner.nextInt();
