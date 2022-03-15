@@ -30,7 +30,7 @@ public class Aplicacao {
         MMC_MDC mmc_mdc = new MMC_MDC();
         long resultadoMMC = mmc_mdc.calculaMMC(numerosMMC);
         System.out.println("MMC: " + resultadoMMC);
-        int resultadoMDC = mmc_mdc.caluculaMDC(numerosMDC);
+        int resultadoMDC = mmc_mdc.calculaMDC(numerosMDC);
         System.out.println("MDC: " + resultadoMDC);
         scanner.close();
     }

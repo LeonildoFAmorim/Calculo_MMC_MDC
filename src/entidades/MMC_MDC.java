@@ -32,14 +32,14 @@ public class MMC_MDC {
         long MMC = 1;
         boolean MMCNaoCalculado = true;
         while (MMCNaoCalculado) {
-            boolean houveOperacao = false;
+            boolean houveDivisao = false;
             for (int posicaoAtual = 0; posicaoAtual < numerosValidados.length; posicaoAtual++) {
                 if (numerosValidados[posicaoAtual] % divisor == 0) {
                     numerosValidados[posicaoAtual] /= divisor;
-                    houveOperacao = true;
+                    houveDivisao = true;
                 }
             }
-            if (houveOperacao) {
+            if (houveDivisao) {
                 MMC *= divisor;
             } else {
                 divisor++;
@@ -49,21 +49,21 @@ public class MMC_MDC {
         return MMC;
     }
 
-    public int caluculaMDC(int[] numeros) {
+    public int calculaMDC(int[] numeros) {
         int[] numerosValidados = validaNumeros(numeros);
         int divisor = 2;
         int MDC = 1;
         boolean MDCNaoCalculado = true;
         while (MDCNaoCalculado) {
-            boolean houveOperacao = false;
+            boolean houveDivisao = false;
             int divisoesRealizadas = 0;
             for (int posicaoAtual = 0; posicaoAtual < numerosValidados.length; posicaoAtual++) {
                 if (numerosValidados[posicaoAtual] % divisor == 0) {
                     numerosValidados[posicaoAtual] /= divisor;
                     divisoesRealizadas++;
-                    houveOperacao = true;
+                    houveDivisao = true;
                 }
-                if (numerosValidados[posicaoAtual] == 1) {
+                if (numeroFoiTotalmenteFatorado(numerosValidados[posicaoAtual])) {
                     MDCNaoCalculado = false;
                     break;
                 }
@@ -71,7 +71,7 @@ public class MMC_MDC {
             if (todosNumerosSaoDivisoresDoDivisor(numerosValidados.length, divisoesRealizadas)) {
                 MDC *= divisor;
             }
-            if (houveOperacao == false) {
+            if (!houveDivisao) {
                 divisor++;
             }
         }
@@ -80,5 +80,9 @@ public class MMC_MDC {
 
     private boolean todosNumerosSaoDivisoresDoDivisor(int numero, int outroNumero) {
         return numero == outroNumero;
+    }
+
+    private boolean numeroFoiTotalmenteFatorado (int numero){
+        return numero == 1;
     }
 }
