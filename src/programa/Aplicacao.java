@@ -28,7 +28,7 @@ public class Aplicacao {
         }
         System.out.println();
         MMC_MDC mmc_mdc = new MMC_MDC();
-        int resultadoMMC = mmc_mdc.calculaMMC(numerosMMC);
+        long resultadoMMC = mmc_mdc.calculaMMC(numerosMMC);
         System.out.println("MMC: " + resultadoMMC);
         int resultadoMDC = mmc_mdc.caluculaMDC(numerosMDC);
         System.out.println("MDC: " + resultadoMDC);

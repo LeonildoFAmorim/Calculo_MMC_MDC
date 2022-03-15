@@ -26,23 +26,23 @@ public class MMC_MDC {
         return numeros;
     }
 
-    public int calculaMMC(int[] numeros) {
+    public long calculaMMC(int[] numeros) {
         int[] numerosValidados = validaNumeros(numeros);
-        int divisorAtual = 2;
-        int MMC = 1;
+        int divisor = 2;
+        long MMC = 1;
         boolean MMCNaoCalculado = true;
         while (MMCNaoCalculado) {
             boolean houveOperacao = false;
             for (int posicaoAtual = 0; posicaoAtual < numerosValidados.length; posicaoAtual++) {
-                if (numerosValidados[posicaoAtual] % divisorAtual == 0) {
-                    numerosValidados[posicaoAtual] /= divisorAtual;
+                if (numerosValidados[posicaoAtual] % divisor == 0) {
+                    numerosValidados[posicaoAtual] /= divisor;
                     houveOperacao = true;
                 }
             }
-            if (houveOperacao == true) {
-                MMC *= divisorAtual;
+            if (houveOperacao) {
+                MMC *= divisor;
             } else {
-                divisorAtual++;
+                divisor++;
             }
             MMCNaoCalculado = statusCalculoMMC(numerosValidados);
         }
@@ -51,29 +51,34 @@ public class MMC_MDC {
 
     public int caluculaMDC(int[] numeros) {
         int[] numerosValidados = validaNumeros(numeros);
-        int divisorAtual = 2;
+        int divisor = 2;
         int MDC = 1;
         boolean MDCNaoCalculado = true;
         while (MDCNaoCalculado) {
             boolean houveOperacao = false;
-            int qtdDeDivisores = 0;
+            int divisoesRealizadas = 0;
             for (int posicaoAtual = 0; posicaoAtual < numerosValidados.length; posicaoAtual++) {
-                if (numerosValidados[posicaoAtual] % divisorAtual == 0) {
-                    numerosValidados[posicaoAtual] /= divisorAtual;
-                    qtdDeDivisores++;
+                if (numerosValidados[posicaoAtual] % divisor == 0) {
+                    numerosValidados[posicaoAtual] /= divisor;
+                    divisoesRealizadas++;
                     houveOperacao = true;
                 }
                 if (numerosValidados[posicaoAtual] == 1) {
                     MDCNaoCalculado = false;
+                    break;
                 }
             }
-            if (qtdDeDivisores == numerosValidados.length) {
-                MDC *= divisorAtual;
+            if (todosNumerosSaoDivisoresDoDivisor(numerosValidados.length, divisoesRealizadas)) {
+                MDC *= divisor;
             }
             if (houveOperacao == false) {
-                divisorAtual++;
+                divisor++;
             }
         }
         return MDC;
+    }
+
+    private boolean todosNumerosSaoDivisoresDoDivisor(int numero, int outroNumero) {
+        return numero == outroNumero;
     }
 }
